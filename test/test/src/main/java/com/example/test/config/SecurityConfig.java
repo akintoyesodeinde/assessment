@@ -42,7 +42,7 @@ public class SecurityConfig {
         http
                 .securityMatcher("/api/**")
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/auth/**", "/h2-console/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -85,3 +85,4 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
+C:\Users\HP\source\test-3line
