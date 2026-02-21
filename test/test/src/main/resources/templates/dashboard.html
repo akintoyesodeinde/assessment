@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<main class="dashboard-shell">
+    <header class="header card">
+        <div>
+            <h1>Wallet Dashboard</h1>
+            <p class="muted">Logged in as <strong th:text="${userEmail}"></strong> (User ID: <span th:text="${userId}"></span>)</p>
+        </div>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="secondary">Logout</button>
+        </form>
+    </header>
+
+    <div th:if="${successMessage}" class="alert" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="alert alert-error" th:text="${errorMessage}"></div>
+
+    <section class="card" th:if="${!hasWallet}">
+        <h2>Create Wallet</h2>
+        <p class="muted">You do not have a wallet yet. Create one to start transfers.</p>
+        <form th:action="@{/wallet/create}" method="post">
+            <button type="submit">Create Wallet Account</button>
+        </form>
+    </section>
+
+    <section class="grid-two" th:if="${hasWallet}">
+        <article class="card">
+            <h2>Your Wallet</h2>
+            <p><strong>Account Number:</strong> <span th:text="${wallet.accountNumber}"></span></p>
+            <p><strong>Current Balance:</strong> <span th:text="${wallet.balance}"></span></p>
+        </article>
+
+        <article class="card">
+            <h2>Fund Wallet</h2>
+            <p class="muted">Add money to your wallet from the system treasury account.</p>
+            <form th:action="@{/wallet/fund}" th:object="${fundRequest}" method="post" class="form-grid">
+                <label for="fundAmount">Amount</label>
+                <input id="fundAmount" type="number" min="0.01" step="0.01" th:field="*{amount}" required>
+
+                <button type="submit">Fund Wallet</button>
+            </form>
+        </article>
+
+        <article class="card">
+            <h2>Transfer Funds</h2>
+            <form th:action="@{/wallet/transfer}" th:object="${transferRequest}" method="post" class="form-grid">
+                <label for="toAccount">Destination Account</label>
+                <input id="toAccount" type="text" th:field="*{toAccount}" required>
+
+                <label for="amount">Amount</label>
+                <input id="amount" type="number" min="0.01" step="0.01" th:field="*{amount}" required>
+
+                <button type="submit">Send Transfer</button>
+            </form>
+        </article>
+    </section>
+
+    <section class="card" th:if="${hasWallet}">
+        <h2>Recent Ledger Entries</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Reference</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Balance After</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(entries)}">
+                <td colspan="5">No entries yet.</td>
+            </tr>
+            <tr th:each="entry : ${entries}">
+                <td th:text="${entry.transactionReference}"></td>
+                <td th:text="${entry.entryType}"></td>
+                <td th:text="${entry.amount}"></td>
+                <td th:text="${entry.balanceAfter}"></td>
+                <td th:text="${entry.createdAt}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>
