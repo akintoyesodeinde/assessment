@@ -17,7 +17,7 @@ Production-ready wallet service with:
 
 ```bash
 git clone https://github.com/akintoyesodeinde/test-3line.git
-cd <your-repo>/test/test
+cd <your file path>/test/test
 ```
 
 Windows PowerShell:
