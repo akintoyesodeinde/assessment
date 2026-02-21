@@ -16,15 +16,17 @@ Production-ready wallet service with:
 ## 1) Clone From GitHub
 
 ```bash
-git clone https://github.com/akintoyesodeinde/test-3line.git
-cd <your file path>/test/test
+git clone https://github.com/akintoyesodeinde/assessment.git
+cd assessment
+
 ```
 
 Windows PowerShell:
 
 ```powershell
-git clone https://github.com/akintoyesodeinde/test-3line.git
-Set-Location https://github.com/akintoyesodeinde/test-3line\test\test
+git clone https://github.com/akintoyesodeinde/assessment.git
+
+Set-Location .\assessment
 ```
 
 ## 2) Build Commands (Maven)
