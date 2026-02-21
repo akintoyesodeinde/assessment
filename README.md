@@ -21,6 +21,7 @@ cd assessment
 
 ```
 
+
 Windows PowerShell:
 
 ```powershell
@@ -28,6 +29,8 @@ git clone https://github.com/akintoyesodeinde/assessment.git
 
 Set-Location .\assessment
 ```
+
+Make Sure You're Inside the directory of yourxml Project Folder Where your pom.xml file is located
 
 ## 2) Build Commands (Maven)
 
@@ -91,7 +94,7 @@ mvn spring-boot:run
 Enable H2 console explicitly at runtime:
 
 ```powershell
-.\mvnw.cmd spring-boot:run "-Dspring-boot.run.arguments=--spring.h2.console.enabled=true"
+.\mvnw.cmd spring-boot:run '-Dspring-boot.run.arguments=--spring.h2.console.enabled=true'
 ```
 
 ### Option B: Run packaged JAR
