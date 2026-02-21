@@ -51,7 +51,9 @@ INTELLIJ:
 
 ```Terminal
 mvn clean install
-.\mvnw clean install
+
+Or using the Maven wrapper:
+.\mvnw.cmd clean install
 ```
 
 
@@ -59,10 +61,12 @@ Optional fast build (skip tests):
 
 ```powershell
 .\mvnw.cmd clean package -Dskip
+````````````````````````
 
 
 ````Intellij Terminal
 mvn clean package -DskipTests
+`````````````
 
 ## 3) Run / Start Application
 
@@ -75,6 +79,14 @@ Windows:
 
 ````Intellij Terminal
 mvn spring-boot:run
+``````````
+
+````````Linux\macOS
+./mvnw spring-boot:run
+
+```````Or if Maven is installed globally:
+mvn spring-boot:run
+````````````
 
 Enable H2 console explicitly at runtime:
 
