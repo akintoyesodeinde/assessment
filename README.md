@@ -27,10 +27,10 @@ Windows PowerShell:
 ```powershell
 git clone https://github.com/akintoyesodeinde/assessment.git
 
-Set-Location .\assessment
-```
+Make Sure You're Inside the directory of your Project Folder Where your pom.xml file is located
 
-Make Sure You're Inside the directory of yourxml Project Folder Where your pom.xml file is located
+Set-Location .\assessment\test\test
+```
 
 ## 2) Build Commands (Maven)
 
